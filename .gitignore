@@ -1,7 +1,7 @@
 #custom
 .firebaserc
-/public
-/functions
+/public-test
+
 # Logs
 logs
 *.log

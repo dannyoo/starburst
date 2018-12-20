@@ -6,12 +6,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
-      }, { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
+      },
       {
         test: /\.html$/,
         use: [
@@ -37,7 +37,7 @@ module.exports = {
       filename: devMode ?  "./index.html" : 'index.html'
     }),
     new MiniCssExtractPlugin({
-        filename: devMode ? '[name].css' : '[name].[hash.css',
+        filename: '[name].css',
         chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     })
   ]
