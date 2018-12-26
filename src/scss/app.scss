@@ -1,0 +1,66 @@
+@import "./skeleton/skeleton.scss";
+
+$primary-color: #FF9705;
+$secondary-color: #FDDD5B;
+
+$zindex-dropdown:          1000 !default;
+$zindex-sticky:            1020 !default;
+$zindex-fixed:             1030 !default;
+$zindex-modal-backdrop:    1040 !default;
+$zindex-modal:             1050 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+
+//media query mixin
+@mixin mq($size) {
+    
+    // Extra small devices (portrait phones, less than 576px)
+    // No media query for `xs` since this is the default in Bootstrap
+
+    @if $size == sm {
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 576px) { @content; }
+    }
+
+    @else if $size == md {
+        // Medium devices (tablets, 768px and up)
+        @media (min-width: 768px) { @content; }
+    }
+
+    @else if $size == lg {
+        // Large devices (desktops, 992px and up)
+        @media (min-width: 992px) { @content; }
+    }
+
+    @else if $size == xl {
+        // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) { @content; }
+    }
+}
+
+#brand{
+    height: 8px;
+    background: linear-gradient(0.25turn,$primary-color,$secondary-color);
+}
+
+.container{
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+    h1{
+        text-align: center;
+    }
+    .search{
+        display: flex;
+        #filter {
+            margin-left: .7em;
+        }
+    }
+    .input-group{
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+    }
+    
+    
+}
