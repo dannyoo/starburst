@@ -1,4 +1,4 @@
-@import "./skeleton/skeleton.scss";
+@import "./bootstrap/bootstrap-reboot.scss";
 
 $primary-color: #FF9705;
 $secondary-color: #FDDD5B;
@@ -44,9 +44,6 @@ $zindex-tooltip:           1070 !default;
 }
 
 .container{
-    // display: flex;
-    // justify-content: center;
-    // flex-direction: column;
     h1{
         text-align: center;
     }
@@ -61,6 +58,4 @@ $zindex-tooltip:           1070 !default;
             padding-left: 2.375rem;
         }
     }
-    
-    
 }

@@ -4,9 +4,9 @@ import ReactDOM from "react-dom";
 const App = () => {
   return (
     <div className="container">
-      <h1>Starbust Opportunity</h1>
+      <h1 className="m-2">Starbust Opportunity</h1>
       {/* Search Zone */}
-      <div className="search">
+      <div className="m-4 search">
         <div className="input-group">
             <input type="text" className="form-control" placeholder="Search the listing"></input>
             <div className="input-group-append">
@@ -20,9 +20,7 @@ const App = () => {
           </button>
       </div>
       {/* Oportunity List */}
-      <ul id="list">
-        
-      </ul>
+      <ul id="list" className="list-group"></ul>
     </div>
   );
 };

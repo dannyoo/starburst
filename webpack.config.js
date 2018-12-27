@@ -1,6 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.npm_lifecycle_script !== 'webpack --mode production'
+const devMode = !process.env.npm_lifecycle_script.includes("webpack --mode production");
 
 module.exports = {
   module: {
