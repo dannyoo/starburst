@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = !process.env.npm_lifecycle_script.includes("webpack --mode production");
+const filterImporter = require('node-sass-filter-importer');
 
 module.exports = {
   module: {
@@ -27,7 +28,9 @@ module.exports = {
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          {loader : 'sass-loader',
+          options: {importer: filterImporter()}
+          }
         ],
       }
     ]

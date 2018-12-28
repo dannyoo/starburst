@@ -1,4 +1,5 @@
-@import "./bootstrap/bootstrap-reboot.scss";
+// Extract only nodes that do not compile to CSS code (mixins, placeholder selectors, variables,...) with sass-filter.
+@import "[silent] from ./bootstrap/bootstrap-reboot.scss";
 
 $primary-color: #FF9705;
 $secondary-color: #FDDD5B;
