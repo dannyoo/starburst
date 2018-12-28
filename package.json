@@ -29,13 +29,15 @@
     "node-sass": "^4.11.0",
     "node-sass-filter-importer": "^5.2.0",
     "postcss-loader": "^3.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-router-dom": "^4.3.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
 }
