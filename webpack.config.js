@@ -37,7 +37,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: devMode ? "./src/index.html": "./src/index.template.html",
+      template: "./src/index.html",
       filename: devMode ?  "./index.html" : 'index.html'
     }),
     new MiniCssExtractPlugin({

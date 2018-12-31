@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Search from "./Search.jsx";
 import Listing from "./Listing.jsx";
+import Details from "./Details.jsx";
 
 const App = () => {
   return (
-    <div className="container">
-      <h1 className="m-2">Starbust Opportunity</h1>
-      <Search />
-      <Listing />
-    </div>
+    <Router>
+      <div className="container">
+        <h1 className="m-2">Starbust Opportunity</h1>
+        <Route exact path={"/"} component={Listing} />
+        <Route path="/listing/:id" component={Details} />
+      </div>
+    </Router>
   );
 };
 export default App;
