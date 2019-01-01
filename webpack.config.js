@@ -2,8 +2,12 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = !process.env.npm_lifecycle_script.includes("webpack --mode production");
 const filterImporter = require('node-sass-filter-importer');
+const path = require('path');
 
 module.exports = {
+  output: {
+    publicPath: devMode ? '/' : ''
+  },
   module: {
     rules: [
       {
@@ -34,6 +38,9 @@ module.exports = {
         ],
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebPackPlugin({

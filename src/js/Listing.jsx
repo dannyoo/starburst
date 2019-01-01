@@ -16,16 +16,15 @@ class Listing extends Component {
     constructor(props) {
         super(props);
         const self = this;
-        this.state = {data: null};
+        this.state = {data: null}; // set state
             collection.limit(25).get().then(querySnapshot => {
-                let listItems = [];
+                let listItems = []; // define empty array of docs on requeset
                 querySnapshot.forEach(doc => {
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.id, " => ", doc.data());
-                    listItems.push(doc);
-                    console.log(listItems);
+                    listItems.push(doc); // push the doc to array
                 });
-                self.setState({data : listItems})
+                self.setState({data : listItems}) // set state to the array of docs
             })
             //if anything has errors, .forEach() stops.
             .catch(
@@ -42,7 +41,8 @@ class Listing extends Component {
             return date.toDateString() + " - " + date.toLocaleTimeString().replace(":00","");
         };
         return (
-        <>
+        <div className="container">
+            <h1 className="m-2">Starbust Opportunity</h1>
             <Search /> 
             <ul id="list" className="list-group">
             {this.state && this.state.data && 
@@ -70,7 +70,7 @@ class Listing extends Component {
                 )
             }     
             </ul>
-        </>
+        </div>
         );
     }
 }

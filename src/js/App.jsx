@@ -8,11 +8,10 @@ import Details from "./Details.jsx";
 const App = () => {
   return (
     <Router>
-      <div className="container">
-        <h1 className="m-2">Starbust Opportunity</h1>
+      <>
         <Route exact path={"/"} component={Listing} />
         <Route path="/listing/:id" component={Details} />
-      </div>
+      </>
     </Router>
   );
 };

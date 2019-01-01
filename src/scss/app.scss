@@ -44,6 +44,7 @@ $zindex-tooltip:           1070 !default;
     background: linear-gradient(0.25turn,$primary-color,$secondary-color);
 }
 
+//listing view
 .container{
     h1{
         text-align: center;
@@ -58,5 +59,16 @@ $zindex-tooltip:           1070 !default;
         .has-search .form-control {
             padding-left: 2.375rem;
         }
+    }
+}
+
+//detail view
+.details{
+    h1 {
+        text-align: start;
+    } 
+    h3, div:last-of-type{
+        padding-top: .6em;
+        padding-bottom: .6em;
     }
 }
