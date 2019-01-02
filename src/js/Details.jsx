@@ -49,7 +49,7 @@ class Details extends Component  {
                             <div className={`d-inline-block`}>
                                 <i className={`d-inline-block fa fa-users`}></i>
                                 <span className={`px-2 text-truncate`}>
-                                    {this.state.data.data().spots + " spots left!"}
+                                    {this.state.data.data().spots + ` spot${this.state.data.data().spots == 1 ? '' : 's'} left!`}
                                 </span>
                             </div>
                             <div className="d-inline-block py-2">
@@ -83,8 +83,12 @@ class Details extends Component  {
                                 </div>
                                 </div>
                             </div>
-                            <div className={`d-flex justify-content-center`}>
-                                <button type="button" class="btn btn-primary btn-lg">Request to Volunteer</button>
+                            <div className="d-flex justify-content-center">
+                            {
+                                this.state.data.data().spots == 0 ? 
+                                    <button type="button" className="btn btn-primary btn-lg" disabled>No Spots Left</button> 
+                                    : <button type="button" className="btn btn-primary btn-lg">Request to Volunteer</button>
+                                }
                             </div>
                             
                 </div>
