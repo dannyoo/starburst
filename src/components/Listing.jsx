@@ -33,16 +33,18 @@ class Listing extends Component {
                     console.log('Handle rejected promise ('+reason+') here.');
                 })
         
+        this.dateReader = this.dateReader.bind(this);
+        
 }
-    
+    dateReader(doc) {
+        let date = new Date(doc.data().date.toDate());
+        return date.toDateString() + " - " + date.toLocaleTimeString().replace(":00","");
+    };    
+
     render() {
-        function dateReader(doc) {
-            let date = new Date(doc.data().date.toDate());
-            return date.toDateString() + " - " + date.toLocaleTimeString().replace(":00","");
-        };
         return (
         <div className="container">
-            <h1 className="m-2">Starbust Opportunity</h1>
+            {/* <h1 className="m-2">Starbust Opportunity</h1> */}
             <Search /> 
             <ul id="list" className="list-group">
             {this.state && this.state.data && 
@@ -58,7 +60,7 @@ class Listing extends Component {
                         <br/>
                         <i className={`d-inline-block fa fa-calendar`}></i>
                         <span className={`d-inline-block px-2 mr-1`}>
-                            {dateReader(doc)}
+                            {this.dateReader(doc)}
                         </span>
                         <div className={`d-inline-block`}>
                             <i className={`d-inline-block fa fa-users`}></i>

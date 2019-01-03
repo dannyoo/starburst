@@ -20,18 +20,20 @@ class Details extends Component  {
             console.log("Current data: ", doc.data());
             self.setState({data : doc})
         });
+
+        this.dateReader = this.dateReader.bind(this)
     }
 
-    render() {
-        function dateReader(doc) {
-            let date = new Date(doc.data().date.toDate());
-            return date.toDateString() + " - " + date.toLocaleTimeString().replace(":00","");
-        };
+    dateReader(doc) {
+        let date = new Date(doc.data().date.toDate());
+        return date.toDateString() + " - " + date.toLocaleTimeString().replace(":00","");
+    };
 
+    render() {
         return (
             <>
                 
-                <img src="https://source.unsplash.com/1600x900/?scenery" className={`bg-gradient-info img-fluid`} />
+                <img src="https://source.unsplash.com/1300x600/?scenery" className={`bg-gradient-info img-fluid`} />
                 {this.state && this.state.data &&
                 <div className="container details">
                             <h1 className={`pt-1`}>
@@ -44,7 +46,7 @@ class Details extends Component  {
                             <br/>
                             <i className={`d-inline-block fa fa-calendar`}></i>
                             <span className={`d-inline-block px-2 mr-1`}>
-                                {dateReader(this.state.data)}
+                                {this.dateReader(this.state.data)}
                             </span>
                             <div className={`d-inline-block`}>
                                 <i className={`d-inline-block fa fa-users`}></i>
@@ -86,7 +88,7 @@ class Details extends Component  {
                             <div className="d-flex justify-content-center">
                             {
                                 this.state.data.data().spots == 0 ? 
-                                    <button type="button" className="btn btn-primary btn-lg" disabled>No Spots Left</button> 
+                                    <button type="button" className="btn btn-secondary btn-lg" disabled>No Spots Left</button> 
                                     : <button type="button" className="btn btn-primary btn-lg">Request to Volunteer</button>
                                 }
                             </div>
