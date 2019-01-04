@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import firebase from './firebase';
-import * as ROUTES from '../constants/routes';
 
 import Navigation from "./Navigation.jsx";
 import Listing from "./Listing.jsx";
@@ -62,6 +61,27 @@ class App extends Component{
       });
   }
 
+  requestToVolunteer = (doc) =>{
+    var docRef = firebase.firestore().collection("list").doc(`${doc}`);
+    // Atomically add a new region to the "regions" array field.
+    docRef.update({
+      requests: firebase.firestore.FieldValue.arrayUnion(this.state.user.uid)
+    }).then()
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  cancel = (doc) =>{
+    var docRef = firebase.firestore().collection("list").doc(`${doc}`);
+    docRef.update({
+      requests: firebase.firestore.FieldValue.arrayRemove(this.state.user.uid)
+    }).then()
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
   render() {
     return (
       <>
@@ -72,11 +92,14 @@ class App extends Component{
             logOutUser={this.logOutUser}
           />
           {/* <Redirect exact from="/" to="/listing" /> */}
-
           <Route exact path="/listing" component={Listing} />
-          <Route path="/listing/:id" component={Details} />
+          <Route path="/listing/:id" render={props => 
+            <Details {...props} cancel={this.cancel} requestToVolunteer={this.requestToVolunteer} user={this.state.user} />} 
+          />
           <Route exact path="/login" component={Login}/>
-          <Route exact path="/signup"  render={props => <Signup {...props} registerUser={this.registerUser} />} />
+          <Route exact path="/signup"  render={props => 
+            <Signup {...props} registerUser={this.registerUser} />} 
+          />
         </>
       </Router>
       </>

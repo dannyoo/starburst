@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 import firebase from "./firebase";
 
 const app = firebase.app();
@@ -19,9 +19,40 @@ class Details extends Component  {
         docRef.onSnapshot(function(doc) {
             console.log("Current data: ", doc.data());
             self.setState({data : doc})
+        }, function(error) {
+            console.error(error);
         });
 
         this.dateReader = this.dateReader.bind(this)
+
+        this.redirect = this.redirect.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+    }
+    
+    componentWillUnmount() {
+        const docRef = collection.doc(`${this.props.match.params.id}`);
+        var unsubscribe = docRef
+        .onSnapshot(function () {});
+        // ...
+        // Stop listening to changes
+        unsubscribe();
+    }
+
+    redirect(e) {
+        e.preventDefault();
+        this.props.history.push('/login');
+    }
+    
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.requestToVolunteer(this.props.match.params.id);
+        // this.setState({ meetingName: '' });
+    }
+
+    handleCancel(e){
+        e.preventDefault();
+        this.props.cancel(this.props.match.params.id);
     }
 
     dateReader(doc) {
@@ -30,6 +61,7 @@ class Details extends Component  {
     };
 
     render() {
+        const {user} = this.props;
         return (
             <>
                 
@@ -85,12 +117,35 @@ class Details extends Component  {
                                 </div>
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-center">
+                            <div className="d-flex flex-column">
                             {
-                                this.state.data.data().spots == 0 ? 
-                                    <button type="button" className="btn btn-secondary btn-lg" disabled>No Spots Left</button> 
-                                    : <button type="button" className="btn btn-primary btn-lg">Request to Volunteer</button>
-                                }
+                            this.state.data.data().spots == 0  && 
+                            !this.state.data.data().requests.includes(`${this.props.user.uid}`) &&
+                            <button type="button" className="btn btn-secondary btn-lg mx-auto" disabled>
+                            No Spots Left</button>
+                            }
+                            {
+                            this.state.data.data().spots > 0 && 
+                            !user && 
+                            <button type="button" className="btn btn-primary btn-lg mx-auto" onClick={(e)=> this.redirect(e)}>
+                            Request to Volunteer</button>
+                            }
+                            {
+                            this.state.data.data().spots > 0 && 
+                            user && 
+                            !this.state.data.data().requests.includes(`${this.props.user.uid}`) && 
+                                <button type="button" className="btn btn-primary btn-lg mx-auto" onClick={(e)=>this.handleSubmit(e)}>
+                                Request to Volunteer</button>
+                            }
+                            {
+                            user && 
+                            this.state.data.data().requests.includes(`${this.props.user.uid}`) &&
+                            <>
+                            <button type="button" className="btn btn-primary btn-lg mx-auto d-inline-block mb-n3" disabled>Request Sent</button>
+                            <br/>
+                            <a className="badge badge-danger mx-auto d-inline-block" onClick={(e)=>this.handleCancel(e)}>Cancel Request</a>
+                            </>
+                            }
                             </div>
                             
                 </div>
