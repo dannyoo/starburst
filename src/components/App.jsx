@@ -57,13 +57,13 @@ class App extends Component{
       .auth()
       .signOut()
       .then(() => {
-        // navigate('/login');
       });
+
   }
 
   requestToVolunteer = (doc) =>{
     var docRef = firebase.firestore().collection("list").doc(`${doc}`);
-    // Atomically add a new region to the "regions" array field.
+    // Atomically add a new region to the "requests" array field.
     docRef.update({
       requests: firebase.firestore.FieldValue.arrayUnion(this.state.user.uid)
     }).then()
@@ -91,7 +91,6 @@ class App extends Component{
             user={this.state.user}
             logOutUser={this.logOutUser}
           />
-          {/* <Redirect exact from="/" to="/listing" /> */}
           <Route exact path="/listing" component={Listing} />
           <Route path="/listing/:id" render={props => 
             <Details {...props} cancel={this.cancel} requestToVolunteer={this.requestToVolunteer} user={this.state.user} />} 

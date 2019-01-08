@@ -47,7 +47,6 @@ class Details extends Component  {
     handleSubmit(e) {
         e.preventDefault();
         this.props.requestToVolunteer(this.props.match.params.id);
-        // this.setState({ meetingName: '' });
     }
 
     handleCancel(e){
