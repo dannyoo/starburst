@@ -61,7 +61,7 @@ class App extends Component{
 
   }
 
-  requestToVolunteer = (doc) =>{
+  requestToVolunteer = doc => {
     var docRef = firebase.firestore().collection("list").doc(`${doc}`);
     // Atomically add a new region to the "requests" array field.
     docRef.update({
@@ -72,7 +72,7 @@ class App extends Component{
     });
   }
 
-  cancel = (doc) =>{
+  cancel = doc => {
     var docRef = firebase.firestore().collection("list").doc(`${doc}`);
     docRef.update({
       requests: firebase.firestore.FieldValue.arrayRemove(this.state.user.uid)

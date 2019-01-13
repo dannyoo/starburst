@@ -40,7 +40,11 @@ module.exports = {
     ]
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    overlay: {
+      warnings: true,
+      errors: true
+    }
   },
   plugins: [
     new HtmlWebPackPlugin({
