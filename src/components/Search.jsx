@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import Filter from './Filter.jsx';
 
 class Search extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            query: null
+            query: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    applyFilter = filterString => {
+        // this.state query doesn't change! what get sent to the server is in Listing.jsx state.lastSearchQuery
+        this.props.userDidTextSearch(`${this.state.query} ${filterString}`)
     }
     
     handleChange(e) {
@@ -31,6 +37,7 @@ class Search extends Component {
     render(){
 
         return(
+            <>
             <div className="m-4 search">
                 <div className="input-group">
                     <input name="query" type="text" className="form-control" placeholder="Search the listing"
@@ -43,10 +50,12 @@ class Search extends Component {
                     </button>
                     </div>
                 </div>
-                <button id="filter" className="btn btn-secondary" type="button">
+                <button id="filter" className="btn btn-secondary" type="button" data-toggle="modal" data-target="#filterModalCenter">
                     <i className="fa fa-filter"></i>
                 </button>
             </div>
+            <Filter applyFilter={this.applyFilter} />
+            </>
         );
     }
 }
