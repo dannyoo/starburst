@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import firebase from './firebase';
 
+import Landing from "./Landing.jsx";
 import Navigation from "./Navigation.jsx";
 import Listing from "./Listing.jsx";
 import Details from "./Details.jsx";
@@ -91,6 +92,7 @@ class App extends Component{
             user={this.state.user}
             logOutUser={this.logOutUser}
           />
+          <Route exact path="/" component={Landing}></Route>
           <Route exact path="/listing" component={Listing} />
           <Route path="/listing/:id" render={props => 
             <Details {...props} cancel={this.cancel} requestToVolunteer={this.requestToVolunteer} user={this.state.user} />} 
