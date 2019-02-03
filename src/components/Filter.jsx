@@ -24,7 +24,7 @@ class Filter extends Component {
             school: "",
             IV: "",
             filterString: ""
-        }, () => {this.props.applyFilter(this.state.filterString)});
+        }, () => {this.props.applyFilter("nada")});
         
         e.preventDefault();
     }
@@ -102,7 +102,7 @@ class Filter extends Component {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={(e)=> this.handleReset(e)}>Close</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={(e)=> this.handleReset(e)}>Reset</button>
                             <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={(e)=>this.handleApply(e)}>Apply</button>
                         </div>
                     </div>

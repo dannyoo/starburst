@@ -15,7 +15,11 @@ class Search extends Component {
 
     applyFilter = filterString => {
         // this.state query doesn't change! what get sent to the server is in Listing.jsx state.lastSearchQuery
-        this.props.userDidTextSearch(`${this.state.query} ${filterString}`)
+        if (filterString === "nada"){
+            this.props.userDidTextSearch("nada");
+        } else {
+            this.props.userDidTextSearch(`${this.state.query} ${filterString}`)
+        }
     }
     
     handleChange(e) {
