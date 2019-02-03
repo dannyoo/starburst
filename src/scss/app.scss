@@ -43,6 +43,9 @@ $zindex-tooltip:           1070 !default;
     height: 8px;
     background: linear-gradient(0.25turn,$primary-color,$secondary-color);
 }
+.navbar-brand{
+    font-family: 'Quicksand', sans-serif;
+}
 
 //listing view
 .container{
@@ -78,4 +81,9 @@ $zindex-tooltip:           1070 !default;
     .form-control{
         margin-bottom: 1.2em;
     }
+}
+
+
+.front{
+    font-family: 'Quicksand', sans-serif;
 }

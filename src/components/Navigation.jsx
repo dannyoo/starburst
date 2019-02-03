@@ -7,8 +7,8 @@ const Navigation = (props) => {
         <nav className="site-nav family-sans navbar navbar-expand bg-primary navbar-dark higher">
         <div id="brand"></div>
         <div className="container-fluid">
-            <NavLink to="/listing" className="navbar-brand">
-                <i className="fa fa-list"></i> Starburst
+            <NavLink to="/" className="navbar-brand">
+                Starburst
             </NavLink>
         <div className="navbar-nav ml-auto">
             {user && (
