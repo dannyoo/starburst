@@ -8,6 +8,7 @@ import Listing from "./Listing.jsx";
 import Details from "./Details.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
+import Creator from "./Creator.jsx";
 
 class App extends Component{
   constructor() {
@@ -91,6 +92,8 @@ class App extends Component{
             user={this.state.user}
             logOutUser={this.logOutUser}
           />
+          <Route exact path="/create" render={props => 
+            <Creator {...props} firebase={firebase} requestToVolunteer={this.requestToVolunteer} user={this.state.user} />} />
           <Route exact path="/listing" component={Listing} />
           <Route path="/listing/:id" render={props => 
             <Details {...props} cancel={this.cancel} requestToVolunteer={this.requestToVolunteer} user={this.state.user} />} 
